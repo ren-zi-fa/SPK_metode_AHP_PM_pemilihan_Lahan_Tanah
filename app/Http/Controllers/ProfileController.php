@@ -16,8 +16,12 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
+        $user = $request->user();
+        // $role = $user->getRoleNames()->first();
         return view('profile.edit', [
-            'user' => $request->user(),
+            'user' => $user,
+            // 'role'=>$role
+
         ]);
     }
 
