@@ -1,7 +1,11 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RekomendasiController;
+use App\Http\Controllers\SearchController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +22,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
+
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -38,8 +45,14 @@ Route::get('/buttons/icon', function () {
     return view('buttons-showcase.icon');
 })->middleware(['auth'])->name('buttons.icon');
 
-Route::get('/buttons/text-icon', function () {
-    return view('buttons-showcase.text-icon');
-})->middleware(['auth'])->name('buttons.text-icon');
+Route::resource('tanah/search', SearchController::class, [
+    'only' => ['index', 'store', 'show', 'destroy']
+])->middleware(['auth']); 
+Route::resource('tanah/rekomendasi', RekomendasiController::class, [
+    'only' => ['index', 'store', 'destroy']
+])->middleware(['auth']); 
+// rekomendasi hasil
+Route::post('tanah/rekomendasi/hasil', [RekomendasiController::class, 'hasil'])->name('rekomendasi.hasil');
+Route::get('tanah/rekomendasi/hasil', [RekomendasiController::class, 'hasil_index'])->name('rekomendasi.hasil.index');
 
 require __DIR__ . '/auth.php';

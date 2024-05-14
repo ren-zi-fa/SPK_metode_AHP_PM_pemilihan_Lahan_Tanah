@@ -116,7 +116,7 @@
         <x-heroicon-o-search aria-hidden="true" class="w-6 h-6" />
     </x-button>
 
-    <a href="{{ route('dashboard') }}">
+    <a href="{{ route('home') }}">
         <x-application-logo aria-hidden="true" class="w-10 h-10" />
 
         <span class="sr-only">Dashboard</span>

@@ -39,7 +39,7 @@
 
             <span
                 :class="open ? 'rotate-45' : '-rotate-45'"
-                class="absolute left-[9px] bg-gray-400 mt-[-5px] h-2 w-[2px] top-1/2 transition-all duration-200"
+                class="absolute right-[9px] bg-gray-400 mt-[-5px] h-2 w-[2px] top-1/2 transition-all duration-200"
             ></span>
         </span>
     </button>

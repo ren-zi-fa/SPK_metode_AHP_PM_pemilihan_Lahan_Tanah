@@ -1,58 +1,72 @@
-<x-perfect-scrollbar
-    as="nav"
-    aria-label="main"
-    class="flex flex-col flex-1 gap-4 px-3"
->
+<x-perfect-scrollbar as="nav" aria-label="main" class="flex flex-col flex-1 gap-4 px-3">
 
-    <x-sidebar.link
-        title="Dashboard"
-        href="{{ route('dashboard') }}"
-        :isActive="request()->routeIs('dashboard')"
-    >
+    <x-sidebar.link title="Home" href="{{ route('home') }}" :isActive="request()->routeIs('home')">
         <x-slot name="icon">
-            <x-icons.dashboard class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
+            <x-eos-home class="flex-shrink-0 w-8 h-8" aria-hidden="true" />
         </x-slot>
     </x-sidebar.link>
 
-    <x-sidebar.dropdown
-        title="Buttons"
-        :active="Str::startsWith(request()->route()->uri(), 'buttons')"
-    >
+    <x-sidebar.link title="Cari Tanah" href="{{url('/tanah/search')}}" :isActive="request()->is('tanah/search')">
         <x-slot name="icon">
-            <x-heroicon-o-view-grid class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
+            <x-eos-search class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
+        </x-slot>
+    </x-sidebar.link>
+    <x-sidebar.link title="Rekomendasi Tanah" href="{{url('/tanah/rekomendasi')}}" :isActive="request()->is('tanah/rekomendasi')">
+        <x-slot name="icon">
+            <x-eos-recommend-o  class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
+        </x-slot>
+    </x-sidebar.link>
+    <x-sidebar.link title="Hasil Rekomendasi Tanah" href="{{ route('rekomendasi.hasil.index') }}" :isActive="request()->routeIs('rekomendasi.hasil.index')">
+        <x-slot name="icon">
+            <x-eos-fact-check-o class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
+        </x-slot>
+    </x-sidebar.link>
+
+    <x-sidebar.dropdown title="Metode Pembobotan" :active="Str::startsWith(request()->route()->uri(), 'buttons')">
+        <x-slot name="icon">
+            <x-eos-balance class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
         </x-slot>
 
-        <x-sidebar.sublink
-            title="Text button"
-            href="{{ route('buttons.text') }}"
-            :active="request()->routeIs('buttons.text')"
-        />
-        <x-sidebar.sublink
-            title="Icon button"
-            href="{{ route('buttons.icon') }}"
-            :active="request()->routeIs('buttons.icon')"
-        />
-        <x-sidebar.sublink
-            title="Text with icon"
-            href="{{ route('buttons.text-icon') }}"
-            :active="request()->routeIs('buttons.text-icon')"
-        />
+        <x-sidebar.sublink title="Pembobotan AHP" href="{{ route('buttons.text') }}"    
+            :active="request()->routeIs('buttons.text')" />
+        <x-sidebar.sublink title="Pembobotan Langsung" href="{{ route('buttons.icon') }}"
+            :active="request()->routeIs('buttons.icon')" />
+
     </x-sidebar.dropdown>
 
-    <div
-        x-transition
-        x-show="isSidebarOpen || isSidebarHovered"
-        class="text-sm text-gray-500"
-    >
-        Dummy Links
-    </div>
 
-    @php
-        $links = array_fill(0, 20, '');
-    @endphp
+    <x-sidebar.dropdown title="Account Setting" :active="Str::startsWith(request()->route()->uri(), 'account')">
+        <x-slot name="icon">
+            <x-eos-manage-accounts class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
+        </x-slot>
 
-    @foreach ($links as $index => $link)
-        <x-sidebar.link title="Dummy link {{ $index + 1 }}" href="#" />
-    @endforeach
+        <x-sidebar.sublink title="Profile" href=""
+            :active="request()->routeIs('buttons.text')" />
+        <x-sidebar.sublink title="Change Password" href=""
+            :active="request()->routeIs('')" />
+        <x-sidebar.sublink title="My Favorite" href=""
+            :active="request()->routeIs('')" />
+
+    </x-sidebar.dropdown>
+
+    <x-sidebar.dropdown title="Admin Privilage" :active="Str::startsWith(request()->route()->uri(), 'admin')">
+        <x-slot name="icon">
+            <x-eos-admin class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
+        </x-slot>
+
+        <x-sidebar.sublink title="User Management" href=""
+            :active="request()->routeIs('buttons.text')" />
+        <x-sidebar.sublink title="Role Management" href=""
+            :active="request()->routeIs('')" />
+        <x-sidebar.sublink title="Product Management" href=""
+            :active="request()->routeIs('')" />
+        <x-sidebar.sublink title="Preset Preference" href=""
+            :active="request()->routeIs('')" />
+        <x-sidebar.sublink title="AHP Wighting Admin" href=""
+            :active="request()->routeIs('')" />
+
+    </x-sidebar.dropdown>
+
+
 
 </x-perfect-scrollbar>
