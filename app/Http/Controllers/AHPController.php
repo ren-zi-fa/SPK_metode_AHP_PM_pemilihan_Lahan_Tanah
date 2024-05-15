@@ -6,12 +6,29 @@ use Illuminate\Http\Request;
 
 class AHPController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    protected $product_atribute_required = array(
+        'name'          => 'required',
+        'detail'        => '',
+        'harga'             => 'required',
+        'perizinan_regulasi'          => 'required',
+        'ketersediaan_air'     => 'required',
+        'lokasi'     => 'required',
+        'potensi_produksi'     => 'required',
+        'aksesibilitas'    => 'required|numeric',
+        'kondisi_lingkungan'  => 'required',
+
+    );
     public function index()
     {
-        //
+        $this_user = User::where('id', Auth::id())->first();
+
+        $ahplist = DB::table('ahp')
+            ->select('*')
+            ->join('users', 'users.id', '=', 'ahp.creator_id')
+            ->orderBy('ahp.created_at', 'desc')->get();
+
+
+        return view('ahp.index', compact('ahplist', 'this_user'));
     }
 
     /**
