@@ -22,15 +22,15 @@
         </x-slot>
     </x-sidebar.link>
 
-    <x-sidebar.dropdown title="Metode Pembobotan" :active="Str::startsWith(request()->route()->uri(), 'buttons')">
+    <x-sidebar.dropdown title="Metode Pembobotan" :active="Str::startsWith(request()->route()->uri(), 'user')">
         <x-slot name="icon">
             <x-eos-balance class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
         </x-slot>
 
-        <x-sidebar.sublink title="Pembobotan AHP" href="{{ route('buttons.text') }}"    
-            :active="request()->routeIs('buttons.text')" />
-        <x-sidebar.sublink title="Pembobotan Langsung" href="{{ route('buttons.icon') }}"
-            :active="request()->routeIs('buttons.icon')" />
+        <x-sidebar.sublink title="Pembobotan AHP" href="{{ route('user.bobot.ahp.index') }}"    
+            :active="request()->routeIs('user.bobot.ahp.index')" />
+        <x-sidebar.sublink title="Pembobotan Langsung" href="{{ route('user.bobot.langsung.index') }}"
+            :active="request()->routeIs('user.bobot.langsung.index')" />
 
     </x-sidebar.dropdown>
 

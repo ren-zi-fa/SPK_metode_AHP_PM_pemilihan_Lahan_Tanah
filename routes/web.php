@@ -56,8 +56,9 @@ Route::resource('tanah/rekomendasi', RekomendasiController::class, [
 // rekomendasi hasil
 Route::post('tanah/rekomendasi/hasil', [RekomendasiController::class, 'hasil'])->name('rekomendasi.hasil');
 Route::get('tanah/rekomendasi/hasil', [RekomendasiController::class, 'hasil_index'])->name('rekomendasi.hasil.index');
-// pembobotan ahp
+
 Route::prefix('user/bobot')->middleware(['auth'])->group(function(){
+    // pembobotan ahp
     Route::get('/ahp', [UserMetodePembobotanController::class, 'ahp_index'])->name('user.bobot.ahp.index');
     Route::get('/ahp/create', [UserMetodePembobotanController::class, 'ahp_create'])->name('user.bobot.ahp.create');
     Route::post('/ahp', [UserMetodePembobotanController::class, 'ahp_store'])->name('user.bobot.ahp.store');
@@ -66,5 +67,9 @@ Route::prefix('user/bobot')->middleware(['auth'])->group(function(){
     Route::post('/ahp/{ahp}', [UserMetodePembobotanController::class, 'ahp_update'])->name('user.bobot.ahp.update');
     Route::post('/ahp/t/{ahp}', [UserMetodePembobotanController::class, 'ahp_toggle'])->name('user.bobot.ahp.toggle');
     Route::delete('/ahp/{ahp}', [UserMetodePembobotanController::class, 'ahp_destroy'])->name('user.bobot.ahp.destroy');
+// Pembobotan Langsung
+    Route::get('langsung', [UserMetodePembobotanController::class, 'langsung_index'])->name('user.bobot.langsung.index');
+    Route::get('langsung/edit', [UserMetodePembobotanController::class, 'langsung_edit'])->name('user.bobot.langsung.edit');
+    Route::post('langsung/edit', [UserMetodePembobotanController::class, 'langsung_update'])->name('user.bobot.langsung.update');
 });
 require __DIR__ . '/auth.php';

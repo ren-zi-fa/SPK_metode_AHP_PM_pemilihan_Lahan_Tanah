@@ -83,7 +83,7 @@ class UserMetodePembobotanController extends Controller
         }
 
         if (true) {
-     
+        
             $request->c1c2 = round_if($request->c1c2);
             $request->c1c3 = round_if($request->c1c3);
             $request->c1c4 = round_if($request->c1c4);
