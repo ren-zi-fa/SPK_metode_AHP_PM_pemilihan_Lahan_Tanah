@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('preset_preferences', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->text('detail');
@@ -22,9 +22,8 @@ return new class extends Migration
             $table->double('potensi_produksi');
             $table->double('aksesibilitas');
             $table->double('kondisi_lingkungan');
-        
             $table->timestamps();
-            
+        
         });
     }
 
@@ -33,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('preset_preferences');
     }
 };

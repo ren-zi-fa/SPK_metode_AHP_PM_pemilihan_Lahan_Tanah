@@ -5,14 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class PresetPreference extends Model
 {
     use HasFactory;
-    protected $table = 'products';
-    protected $primaryKey = "id";
-    public $incrementing = false;
+
+    
+    protected $table = 'preset_preferences';
+
     protected $fillable = [
-        'name', 
+        'name',
         'detail',
         'harga',
         'perizinan_regulasi',
@@ -21,10 +22,6 @@ class Product extends Model
         'potensi_produksi',
         'aksesibilitas',
         'kondisi_lingkungan',
-       
-        
     ];
-    public function favorites(){
-        return $this->hasMany(Favorite::class, 'product_id', 'id');
-      }
+
 }
