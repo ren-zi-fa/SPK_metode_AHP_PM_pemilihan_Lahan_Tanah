@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\BobotLangsung;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -53,19 +54,19 @@ class UserSeeder extends Seeder
           
   
 
-            // $init_bobot_langsung = BobotLangsung::create(
-            //     [
-            //         'id_user'   => $this_user->id,
-            //         'c1'        => 1,
-            //         'c2'        => 1,
-            //         'c3'        => 1,
-            //         'c4'        => 1,
-            //         'c5'        => 1,
-            //         'c6'        => 1,
-            //         'c7'        => 1,
+            $init_bobot_langsung = BobotLangsung::create(
+                [
+                    'id_user'   => $this_user->id,
+                    'c1'        => 1,
+                    'c2'        => 1,
+                    'c3'        => 1,
+                    'c4'        => 1,
+                    'c5'        => 1,
+                    'c6'        => 1,
+                    'c7'        => 1,
                     
-            //     ]
-            // );
+                ]
+            );
         }
         $userPermission = Permission::where('name', 'user-permission')->first();
         $userBiasa = Role::where('name', 'User')->first();
