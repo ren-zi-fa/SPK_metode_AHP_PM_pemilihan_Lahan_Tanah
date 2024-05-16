@@ -46,13 +46,11 @@ class UserSeeder extends Seeder
                 [
                     'name' => $user['name'],
                     'email' => $user['email'],
-                    'email_verified_at'=>$user['email_verified_at'],
                     'password' => $user['password'],
                 ]
             );
+            
             $this_user->assignRole(['User']);
-          
-  
 
             $init_bobot_langsung = BobotLangsung::create(
                 [
@@ -68,8 +66,5 @@ class UserSeeder extends Seeder
                 ]
             );
         }
-        $userPermission = Permission::where('name', 'user-permission')->first();
-        $userBiasa = Role::where('name', 'User')->first();
-        $userBiasa->syncPermissions($userPermission);
     }
 }

@@ -8,7 +8,7 @@
 
     <x-sidebar.link title="Cari Tanah" href="{{url('/tanah/search')}}" :isActive="request()->is('tanah/search')">
         <x-slot name="icon">
-            <x-eos-search class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
+            <x-eos-search class="flex-shrink-0 w-8 h-8" aria-hidden="true" />
         </x-slot>
     </x-sidebar.link>
     <x-sidebar.link title="Rekomendasi Tanah" href="{{url('/tanah/rekomendasi')}}" :isActive="request()->is('tanah/rekomendasi')">

@@ -169,6 +169,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
+        Spatie\Html\HtmlServiceProvider::class,
     ])->toArray(),
 
     /*
@@ -184,6 +186,11 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
+        'aliases' => [
+            // ...
+            'Html' => Spatie\Html\Facades\Html::class,
+        ],
+        
     ])->toArray(),
 
 ];

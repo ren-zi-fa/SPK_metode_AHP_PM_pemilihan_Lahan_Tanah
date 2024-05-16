@@ -21,7 +21,7 @@ class UserMetodePembobotanController extends Controller
         'potensi_produksi'     => 'required|numeric|between:0,10',
         'aksesibilitas'    => 'required|numeric|between:0,10',
         'kondisi_lingkungan'  => 'required|numeric|between:0,64',
-    
+
     );
     protected $ahp_atribute_required = array(
         'nama_perhitungan'      => 'required',
@@ -83,7 +83,7 @@ class UserMetodePembobotanController extends Controller
         }
 
         if (true) {
-        
+
             $request->c1c2 = round_if($request->c1c2);
             $request->c1c3 = round_if($request->c1c3);
             $request->c1c4 = round_if($request->c1c4);
@@ -537,7 +537,7 @@ class UserMetodePembobotanController extends Controller
         $ahp_obj->is_konsisten     = $is_konsisten;
 
         $ahp_obj->save();
-   
+
 
         // update di tabel bobot di database
         $bobot_eloquent_obj = Bobot::where('id_perhitungan', $ahp_obj->id_perhitungan)->first();
@@ -555,7 +555,7 @@ class UserMetodePembobotanController extends Controller
         $bobot_eloquent_obj->consistency_ratio = $CR_value;
         $bobot_eloquent_obj->save();
 
-       
+
 
         PerbandinganBerpasangan::where('id_perhitungan', $ahp_obj->id_perhitungan)->delete();
         // masukkan nilai ke tabel PerbandinganBerpasangan
@@ -598,7 +598,7 @@ class UserMetodePembobotanController extends Controller
 
         AHP::where('id_perhitungan', $id_get_url)->delete();
 
-      
+
         return redirect()->route('user.bobot.ahp.index')
             ->with('success', 'Perhitungan AHP berhasil dihapus');
     }
@@ -629,7 +629,7 @@ class UserMetodePembobotanController extends Controller
         $bobot_langsung = BobotLangsung::where('id_user', $this_user_id)->first();
         // $data = 1;
         $not_sum_zero_check = $req->harga + $req->perizinan_regulasi + $req->ketersediaan_air + $req->lokasi + $req->potensi_produksi +
-            $req->aksesibilitas + $req->kondisi_lingkungan ;
+            $req->aksesibilitas + $req->kondisi_lingkungan;
 
         if ($not_sum_zero_check > 0) {
             BobotLangsung::where('id_user', $this_user_id)->update([
@@ -650,5 +650,5 @@ class UserMetodePembobotanController extends Controller
                 ->with('error', 'Jumlah dari bobot tidak boleh 0');
         }
     }
-
+    
 }

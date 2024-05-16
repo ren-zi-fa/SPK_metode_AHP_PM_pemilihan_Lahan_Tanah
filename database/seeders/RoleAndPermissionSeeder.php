@@ -13,11 +13,11 @@ class RoleAndPermissionSeeder extends Seeder
      */
     public function run(): void
     {
-        $roles = [
-            ['name'=>'User','guard_name'=>'web'],
-            ['name'=>'Admin','guard_name'=>'web']
-        ];
+        // $roles = [
+        //     ['name'=>'User','guard_name'=>'web'],
+        //     ['name'=>'Admin','guard_name'=>'web']
+        // ];
 
-        Role::insert($roles);
+        // Role::insert($roles);
     }
 }

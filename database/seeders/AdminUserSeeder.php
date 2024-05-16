@@ -17,15 +17,15 @@ class AdminUserSeeder extends Seeder
      */
     public function run(): void
     {
-        $admin = User::create([
-            'name'=>'admin',
-            'email'=>'admin@gmail.com',
-            'email_verified_at'=>'2024-05-13 18:50:29',
-            'password'=> Hash::make('12345678'),
+        $user = User::create([
+            'name' => 'SuperAdmin123', 
+            'email' => 'admin@gmail.com',
+            'email_verified_at'=>'2024-05-09 07:37:39',
+            'password' => bcrypt('12345678')
         ]);
         $init_bobot_langsung = BobotLangsung::create(
             [
-                'id_user'   => $admin->id,
+                'id_user'   => $user->id,
                 'c1'        => 1,
                 'c2'        => 1,
                 'c3'        => 1,
@@ -36,10 +36,12 @@ class AdminUserSeeder extends Seeder
                 
             ]
         );
-    
+        $userRole = Role::create(['name' => 'User']);
+        $userPermission = Permission::where('name', 'user')->first();
+        $userRole->syncPermissions($userPermission);
+        $role = Role::create(['name' => 'Admin']);
         $permissions = Permission::pluck('id','id')->all();
-        $adminRole = Role::where('name', 'Admin')->first();
-        $adminRole->syncPermissions($permissions);
-        $admin->assignRole([$adminRole->id]);
+        $role->syncPermissions($permissions);
+        $user->assignRole([$role->id]);
     }
 }
