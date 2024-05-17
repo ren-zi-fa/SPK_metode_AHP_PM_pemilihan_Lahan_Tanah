@@ -1,4 +1,5 @@
 <x-app-layout>
+    @section('title', 'Pembobotan AHP')
     <x-slot name="header">
         <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <h2 class="text-xl font-semibold leading-tight">
@@ -9,10 +10,10 @@
                 tekan tombol Mulai Rekomendasi.') }}
             </h2>
         </div>
-       
+
         <div class="mt-8 flex gap-2">
             <div class="">
-                <a href=""
+                <a href="{{url('tanah/rekomendasi')}}"
                     class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">
                     <x-eos-queue-play-next class="flex-shrink-0 w-6 h-6 inline-block " aria-hidden="true" /> Mulai
                     Rekomendasi
@@ -100,11 +101,12 @@
                             @inject('html', 'Spatie\Html\Html')
 
                             @if ($ahp->is_created_by_admin)
-                          
-                            @can('admin', \App\Models\User::class)
+                         
+                            @if(Auth::user()->hasRole('Admin'))
                             <a class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
                                 href="{{ route('user.bobot.ahp.edit',$ahp->id_perhitungan) }}">Edit</a>
-                            @endcan
+                            @endif
+                           
                             @else
                             <a class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
                                 href="{{ route('user.bobot.ahp.edit',$ahp->id_perhitungan) }}">Edit</a>
@@ -126,16 +128,14 @@
                             @if (!($this_user->id_perhitungan_aktif === $ahp->id_perhitungan) && $ahp->is_konsisten)
                             {!! $html->form()->action(route('user.bobot.ahp.toggle',
                             $ahp->id_perhitungan))->method('POST')->style('display:inline')->open() !!}
-                            {!! $html->submit('Set Aktif')->class('focus:outline-none text-white bg-red-700
-                            hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5
-                            me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900') !!}
+                            {!! $html->submit('Set Aktif')->class('text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2') !!}
                             {!! $html->form()->close() !!}
 
                             @else
                             @if ($this_user->id_perhitungan_aktif === $ahp->id_perhitungan)
 
                             @else
-                            <a class="text-white bg-blue-400 dark:bg-blue-500 cursor-not-allowed font-medium rounded-lg text-sm px-5 py-2.5 text-center "
+                            <a class="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900 "
                                 disabled>Set Aktif</a>
                             @endif
 

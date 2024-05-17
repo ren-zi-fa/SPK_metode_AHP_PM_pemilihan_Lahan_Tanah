@@ -11,12 +11,12 @@
             <x-eos-search class="flex-shrink-0 w-8 h-8" aria-hidden="true" />
         </x-slot>
     </x-sidebar.link>
-    <x-sidebar.link title="Rekomendasi Tanah" href="{{url('/tanah/rekomendasi')}}" :isActive="request()->is('tanah/rekomendasi')">
+    <x-sidebar.link title="Rekomendasikan Tanah" href="{{url('/tanah/rekomendasi')}}" :isActive="request()->is('tanah/rekomendasi')">
         <x-slot name="icon">
             <x-eos-recommend-o  class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
         </x-slot>
     </x-sidebar.link>
-    <x-sidebar.link title="Hasil Rekomendasi Tanah" href="{{ route('rekomendasi.hasil.index') }}" :isActive="request()->routeIs('rekomendasi.hasil.index')">
+    <x-sidebar.link title="Hasil Rekomendasi" href="{{ route('rekomendasi.hasil.index') }}" :isActive="request()->routeIs('rekomendasi.hasil.index')">
         <x-slot name="icon">
             <x-eos-fact-check-o class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
         </x-slot>
