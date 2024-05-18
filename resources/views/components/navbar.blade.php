@@ -76,12 +76,6 @@
             </x-slot>
 
             <x-slot name="content">
-                <!-- Profile -->
-                <x-dropdown-link
-                    :href="route('profile.edit')"
-                >
-                    {{ __('Profile') }}
-                </x-dropdown-link>
 
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">
@@ -91,6 +85,7 @@
                         :href="route('logout')"
                         onclick="event.preventDefault(); this.closest('form').submit();"
                     >
+                    <x-eos-logout-o class="flex-shrink-0 w-6 h-6 inline-block"/>
                         {{ __('Log Out') }}
                     </x-dropdown-link>
                 </form>

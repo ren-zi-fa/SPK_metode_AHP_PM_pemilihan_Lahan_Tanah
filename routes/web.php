@@ -1,11 +1,16 @@
 <?php
 
+use App\Http\Controllers\AHPController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PresetPreferenceController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RekomendasiController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserMetodePembobotanController;
 use Illuminate\Support\Facades\Auth;
 
@@ -33,21 +38,29 @@ Route::get('/', function () {
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::get('tanah/profile', [ProfileController::class, 'edit'])->name('tanah.profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // only admin
+    Route::group(['middleware' => ['role:Admin']], function () {
+        Route::resource('/admin/roles', RoleController::class);
+        Route::resource('/admin/users', UserController::class);
+        Route::resource('/admin/procts', ProductController::class);
+        Route::resource('/admin/presetdupreferences', PresetPreferenceController::class);
+
+        Route::resource('ahp', AHPController::class, [
+            'only' => ['index', 'create', 'store']
+        ]);
+        Route::get('/ahp/{ahp}', [AHPController::class, 'show'])->name('ahp.show');
+        Route::get('/ahp/{ahp}/edit', [AHPController::class, 'edit'])->name('ahp.edit');
+        Route::post('/ahp/{ahp}', [AHPController::class, 'update'])->name('ahp.update');
+        Route::post('/ahp/t/{ahp}', [AHPController::class, 'toggle'])->name('ahp.toggle');
+        Route::delete('/ahp/{ahp}', [AHPController::class, 'destroy'])->name('ahp.destroy');
+
+
+    });
 });
-
-// useless routes
-// Just to demo sidebar dropdown links active states.
-Route::get('/buttons/text', function () {
-    return view('buttons-showcase.text');
-})->middleware(['auth'])->name('buttons.text');
-
-Route::get('/buttons/icon', function () {
-    return view('buttons-showcase.icon');
-})->middleware(['auth'])->name('buttons.icon');
-
 
 
 
