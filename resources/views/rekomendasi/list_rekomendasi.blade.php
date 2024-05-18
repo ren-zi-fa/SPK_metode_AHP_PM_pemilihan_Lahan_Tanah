@@ -354,4 +354,102 @@
         </div>
     </div>
 
+    <div class="relative overflow-x-auto mt-5">
+        <table class="w-full text-sm text-left rtl:text-right">
+            <caption
+                class="p-5 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
+                Hasil Rekomendasi Produk
+
+            </caption>
+            <thead
+                class="text-xs uppercase bg-text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 ">
+                <tr>
+                    <th scope="col" class="px-6 py-3">
+                        Peringkat
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Nama Tanah
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Skor Rekomendasi
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Harga
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Deskripsi
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($products as $key => $product)
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        @if ($key===0)
+                        <x-eos-stars class="flex-shrink-0 w-6 h-6 inline-block me-8" /> @else {{ $key+1 }}
+                        @endif
+                    </th>
+                    <td class="px-6 py-4">
+                        {{ $product->name }}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ $product->n_bobot }}
+                    </td>
+                    <td class="px-6 py-4">
+                        Rp{{ number_format($product->harga,0,",",".") }}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ $product->detail }}
+                    </td>
+                    <td class="px-6 py-4">
+                        @if ( !($product->fav_product_id) )
+                        <form action="{{ route('myfavorites.store',$product->id) }}" method="POST">
+                            <a class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-xs w1/2 px-5 py-2.5 text-center me-2 mb-2"
+                                href="{{ route('rekomendasi.hasil.product.detail',$product->id) }}">
+                                Detail</a>
+                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                            <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                            @csrf
+                            <button type="submit"
+                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><svg
+                                    class="w-6 h-6 text-blue-600 dark:text-white inline-block" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path
+                                        d="m12.75 20.66 6.184-7.098c2.677-2.884 2.559-6.506.754-8.705-.898-1.095-2.206-1.816-3.72-1.855-1.293-.034-2.652.43-3.963 1.442-1.315-1.012-2.678-1.476-3.973-1.442-1.515.04-2.825.76-3.724 1.855-1.806 2.201-1.915 5.823.772 8.706l6.183 7.097c.19.216.46.34.743.34a.985.985 0 0 0 .743-.34Z" />
+                                </svg>
+                                Add to
+                                favorite</button>
+
+                        </form>
+                        @else
+                        <form action="{{ route('myfavorites.destroy',$product->id) }}" method="POST">
+
+                            <a class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+                                href="{{ route('search.show',$product->id) }}">Detail</a>
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="font-semibold text-red-700 dark:text-red-700  hover:underline">
+                                <svg class="w-6 h-6 text-blue-600 dark:text-white inline-block" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path
+                                        d="m12.75 20.66 6.184-7.098c2.677-2.884 2.559-6.506.754-8.705-.898-1.095-2.206-1.816-3.72-1.855-1.293-.034-2.652.43-3.963 1.442-1.315-1.012-2.678-1.476-3.973-1.442-1.515.04-2.825.76-3.724 1.855-1.806 2.201-1.915 5.823.772 8.706l6.183 7.097c.19.216.46.34.743.34a.985.985 0 0 0 .743-.34Z" />
+                                </svg>
+                                Remove from favorite</button>
+
+                        </form>
+                        @endif
+
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+
+
 </x-app-layout>

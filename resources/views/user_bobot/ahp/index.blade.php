@@ -6,10 +6,11 @@
                 {{ __('Silakan Buat Baru atau Pilih Pembobotan Kriteria AHP yang KONSISTEN yang ingin digunakan dengan
                 tekan tombol Set Aktif') }}
                 <x-eos-arrow-forward class="flex-shrink-0 w-6 h-6 inline-block text-red-600" aria-hidden="true" /> {{
-                __('Kemudian
-                tekan tombol Mulai Rekomendasi.') }}
+                __('Kemudian tekan tombol Mulai Rekomendasi.') }}
             </h2>
         </div>
+        
+    </x-slot>
 
         <div class="mt-8 flex gap-2">
             <div class="">
@@ -20,7 +21,7 @@
                 </a>
             </div>
             <div class="">
-                <a href=""
+                <a href="{{ route('user.bobot.ahp.create') }}"
                     class="text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-yellow-900">
                     <x-eos-add class="flex-shrink-0 w-6 h-6 inline-block" aria-hidden="true" /> Buat Baru Pembobotan
                     Kriteria Menggunakan Metode AHP
@@ -95,7 +96,7 @@
                             </label>
                             @endif
                         </td>
-                        <td class="px-6 py-4">
+                        <td class="px-6 py-4 inline-block">
                             <a class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                                 href="{{ route('user.bobot.ahp.show',$ahp->id_perhitungan) }}">Detail</a>
                             @inject('html', 'Spatie\Html\Html')
@@ -135,7 +136,7 @@
                             @if ($this_user->id_perhitungan_aktif === $ahp->id_perhitungan)
 
                             @else
-                            <a class="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900 "
+                            <a class="inline-block text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900 "
                                 disabled>Set Aktif</a>
                             @endif
 
@@ -149,5 +150,4 @@
             </table>
         </div>
 
-    </x-slot>
 </x-app-layout>

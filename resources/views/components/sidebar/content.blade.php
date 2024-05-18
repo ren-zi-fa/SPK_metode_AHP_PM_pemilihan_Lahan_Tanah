@@ -44,8 +44,8 @@
             :active="request()->routeIs('buttons.text')" />
         <x-sidebar.sublink title="Change Password" href=""
             :active="request()->routeIs('')" />
-        <x-sidebar.sublink title="My Favorite" href=""
-            :active="request()->routeIs('')" />
+        <x-sidebar.sublink title="My Favorite" href="{{url('tanah/myfavorites')}} "
+            :active="request()->is('tanah/myfavorites')" />
 
     </x-sidebar.dropdown>
 

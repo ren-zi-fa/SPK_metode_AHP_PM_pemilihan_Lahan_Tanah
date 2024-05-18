@@ -6,6 +6,7 @@ use App\Models\AHP;
 use App\Models\AhpPmDigunakanHasilRekomendasi;
 use App\Models\Bobot;
 use App\Models\BobotLangsung;
+use App\Models\Favorite;
 use App\Models\HasilRekomendasi;
 use App\Models\PresetPreference;
 use App\Models\Product;
@@ -456,5 +457,15 @@ class RekomendasiController extends Controller
         ->get();
 
         return view('rekomendasi.list_rekomendasi', compact('products', 'bobotKriteriaDanPreferensiKriteria'));
+    }
+    public function product_detail(Product $product, $id)
+    {
+        $this_user_id = Auth::id();
+
+        // send data to view
+        $product = Product::where('id', $id)->first();
+        $is_favorite = Favorite::where([['user_id', $this_user_id], ['fav_product_id', $id]])->first();
+
+        return view('rekomendasi.product_detail',compact('product', 'is_favorite'));
     }
 }
