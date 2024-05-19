@@ -42,10 +42,10 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    // only admin
-    Route::group(['middleware' => ['role:Admin']], function () {
-        Route::resource('/admin/roles', RoleController::class);
-        Route::resource('/admin/users', UserController::class);
+});
+Route::middleware(['auth','role:User|Admin'])->group(function(){
+    Route::resource('/admin/users', UserController::class);
+    Route::resource('/admin/roles', RoleController::class);
         Route::resource('/admin/procts', ProductController::class);
         Route::resource('/admin/presetdupreferences', PresetPreferenceController::class);
 
@@ -57,12 +57,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/ahp/{ahp}', [AHPController::class, 'update'])->name('ahp.update');
         Route::post('/ahp/t/{ahp}', [AHPController::class, 'toggle'])->name('ahp.toggle');
         Route::delete('/ahp/{ahp}', [AHPController::class, 'destroy'])->name('ahp.destroy');
-
-
-    });
 });
-
-
 
 // rekomendasi 
 Route::prefix('tanah')->middleware(['auth','role:User|Admin'])->group(function(){

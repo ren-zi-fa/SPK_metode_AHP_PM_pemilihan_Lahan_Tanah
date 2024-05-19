@@ -78,7 +78,7 @@
             </tbody>
             @endforeach
         </table>
+        @include('pagination.index', ['paginator' => $data])
     </div>
-
 
 </x-app-layout>
