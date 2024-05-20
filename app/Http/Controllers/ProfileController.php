@@ -38,7 +38,7 @@ class ProfileController extends Controller
 
         $request->user()->save();
 
-        return Redirect::route('tanah.profile.edit')->with('status', 'profile-updated');
+        return Redirect::route('account.profile.edit')->with('status', 'profile-updated');
     }
 
     /**

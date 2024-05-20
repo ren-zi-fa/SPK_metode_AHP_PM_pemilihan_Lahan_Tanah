@@ -25,7 +25,7 @@ class SocialiteController extends Controller
 
         Auth::login($authuser);
 
-        return redirect('/dashboard');
+        return redirect('/home');
     }
     public function store($socialUser, $provider)
     {
@@ -38,6 +38,7 @@ class SocialiteController extends Controller
                     'password'=>Hash::make($socialUser->getName()),
                     'email' => $socialUser->getEmail(),
                 ]);
+                 $user->assignRole('User');
             }
             $user->socialite()->create([
                 'provider_id' => $socialUser->getId(),

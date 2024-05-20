@@ -1,5 +1,5 @@
 <x-app-layout>
-    @section('title', 'User')
+    @section('title', 'Admin')
     <x-slot name="header">
         <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <h2 class="text-xl font-semibold leading-tight">
@@ -55,30 +55,43 @@
                         <x-eos-role-binding-o class="flex-shrink-0 w-5 h-5 inline-block" />
                         @if(!empty($user->getRoleNames()))
                         @foreach($user->getRoleNames() as $v)
+                        @if ($v == 'Admin')
+                        <label
+                            class="bg-yellow-100 text-yellow-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300">{{
+                            $v }}</label>
+                        @else
                         <label
                             class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">{{
                             $v }}</label>
+                        @endif
                         @endforeach
                         @endif
                     </td>
                     @inject('html', 'Spatie\Html\Html')
                     <td class="px-6 py-4 text-right">
-                        <a class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" href="{{ route('users.show',$user->id) }}">Show</a>
-                        <a class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" href="{{ route('users.edit',$user->id) }}">Edit</a>
-                        @if ($user->id !== auth()->user()->id )
-                        {!! $html->form()->action(route('users.destroy',
-                        $user->id))->method('DELETE')->style('display:inline')->open() !!}
-                        {!! $html->submit('Delete')->class('text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2') !!}
-
-                        {!! $html->form()->close() !!}
+                        <a class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+                            href="{{ route('users.show',$user->id) }}">Show</a>
+                        <a class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+                            href="{{ route('users.edit',$user->id) }}">Edit</a>
+                        @if ($user->id !== auth()->user()->id)
+                        <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display:inline">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit"
+                                class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete</button>
+                        </form>
                         @endif
+
+
                     </td>
                 </tr>
 
             </tbody>
             @endforeach
         </table>
-        @include('pagination.index', ['paginator' => $data])
+        <div class="my-4 flex justify-center">
+            @include('pagination.index', ['paginator' => $data])
+        </div>
     </div>
 
 </x-app-layout>

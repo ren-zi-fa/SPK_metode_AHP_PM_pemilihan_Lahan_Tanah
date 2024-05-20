@@ -61,10 +61,6 @@
 
             </div>
         </div>
- <x-units.table-perbandingan/>
-
-       
-            
-
-    </form>
+ <x-units.table-perbandingan/>      
+ </form>
 </x-app-layout>

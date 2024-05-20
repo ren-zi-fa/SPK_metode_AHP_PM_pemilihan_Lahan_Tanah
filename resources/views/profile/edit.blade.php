@@ -1,4 +1,6 @@
 <x-app-layout>
+    @section('title','Account')
+        
     <x-slot name="header">
         <h2 class="font-semibold text-xl leading-tight">
             {{ __('Profile') }}

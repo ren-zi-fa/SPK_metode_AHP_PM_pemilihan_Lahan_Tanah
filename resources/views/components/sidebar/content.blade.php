@@ -35,18 +35,18 @@
     </x-sidebar.dropdown>
 
 
-    <x-sidebar.dropdown title="Account Setting" :active="Str::startsWith(request()->route()->uri(), 'tanah')">
+    <x-sidebar.dropdown title="Account Setting" :active="Str::startsWith(request()->route()->uri(), 'account')">
         <x-slot name="icon">
             <x-eos-manage-accounts class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
         </x-slot>
 
-        <x-sidebar.sublink title="Profile" href="{{route('tanah.profile.edit')}}"
-            :active="request()->routeIs('tanah.profile.edit')" />
-        <x-sidebar.sublink title="My Favorite" href="{{url('tanah/myfavorites')}} "
-            :active="request()->is('tanah/myfavorites')" />
+        <x-sidebar.sublink title="Profile" href="{{route('account.profile.edit')}}"
+            :active="request()->routeIs('account.profile.edit')" />
+        <x-sidebar.sublink title="My Favorite" href="{{url('account/myfavorites')}} "
+            :active="request()->is('account/myfavorites')" />
 
     </x-sidebar.dropdown>
-
+    @role('Admin')
     <x-sidebar.dropdown title="Admin Privilage" :active="Str::startsWith(request()->route()->uri(), 'admin')">
         <x-slot name="icon">
             <x-eos-admin class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
@@ -54,17 +54,15 @@
 
         <x-sidebar.sublink title="User Management" href="{{url('/admin/users')}}"
             :active="request()->is('admin/users')" />
-        <x-sidebar.sublink title="Role Management" href="{{url('/admin/roles')}}"
-            :active="request()->is('admin/roles')" />
         <x-sidebar.sublink title="Product Management" href="{{url('/admin/products')}}"
             :active="request()->is('admin/products')" />
         <x-sidebar.sublink title="Preset Preference" href="{{url('/admin/presetpreferences')}}"
-            :active="request()->is('/admin/presetpreferences')" />
-        <x-sidebar.sublink title="AHP Wighting Admin" href="{{url('admin/ahp')}}"
-            :active="request()->is('/admin/ahp')" />
+            :active="request()->is('admin/presetpreferences')" />
+        {{-- <x-sidebar.sublink title="AHP Wighting Admin" href="{{url('admin/ahp')}}"
+            :active="request()->is('admin/ahp')" /> --}}
 
     </x-sidebar.dropdown>
-
+@endrole
 
 
 </x-perfect-scrollbar>

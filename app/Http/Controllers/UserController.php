@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EditUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -36,14 +37,9 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(EditUserRequest $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|same:confirm-password',
-            'roles' => 'required'
-        ]);
+        $request->validated();
     
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);
@@ -111,8 +107,14 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        User::find($id)->delete();
+        $user = User::find($id);
+
+        if ($user) {
+            $user->delete();
+        }
+    
         return redirect()->route('users.index')
-                        ->with('success','User deleted successfully');
+                        ->with('success', 'User deleted successfully');
     }
+    
 }
