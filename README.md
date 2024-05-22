@@ -1,66 +1,83 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# SPK_metode_AHP_PM_pemilihan_Lahan_Tanah
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Proyek ini adalah sistem pendukung keputusan (SPK) yang menggunakan metode Analytic Hierarchy Process (AHP) dan Profile Matching (PM) untuk pemilihan lahan tanah. Sistem ini dirancang untuk membantu dalam menentukan lahan tanah yang paling sesuai berdasarkan kriteria-kriteria yang sudah saya tentukan.
 
-## About Laravel
+## Daftar Isi
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- [Fitur](#fitur)
+- [Persyaratan](#persyaratan)
+- [Instalasi](#instalasi)
+- [Penggunaan](#penggunaan)
+- [Lisensi](#lisensi)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Fitur
 
-## Learning Laravel
+- Implementasi metode AHP untuk menentukan bobot kriteria.
+- Implementasi metode Profile Matching untuk evaluasi alternatif lahan.
+- Antarmuka pengguna yang sederhana dan mudah digunakan.
+- Telah menggunakan fitur login oAuth dengan menggunakan google
+- Login dengan menggunakan multi role
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Persyaratan
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Sebelum menginstal dan menjalankan proyek ini, pastikan Anda memiliki:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- PHP >= 8.0
+- Composer
+- Database (MySQL)
+- Node.js dan NPM
 
-## Laravel Sponsors
+## Instalasi
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Berikut adalah langkah-langkah untuk menginstal dan menjalankan proyek ini secara lokal:
 
-### Premium Partners
+1. Clone repository ini:
+    ```bash
+    git clone https://github.com/ren-zi-fa/SPK_metode_AHP_PM_pemilihan_Lahan_Tanah.git
+    ```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+2. Pindah ke direktori proyek:
+    ```bash
+    cd SPK_metode_AHP_PM_pemilihan_Lahan_Tanah
+    ```
 
-## Contributing
+3. Instal dependensi PHP menggunakan Composer:
+    ```bash
+    composer install
+    ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+4. Instal dependensi Node.js menggunakan NPM:
+    ```bash
+    npm install
+    ```
 
-## Code of Conduct
+5. Salin file `.env.example` menjadi `.env` dan sesuaikan pengaturan database:
+    ```bash
+    cp .env.example .env
+    ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+6. Generate application key:
+    ```bash
+    php artisan key:generate
+    ```
 
-## Security Vulnerabilities
+7. Migrasi dan seed database:
+    ```bash
+    php artisan migrate --seed
+    ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+8. Jalankan server pengembangan Laravel:
+    ```bash
+    php artisan serve
+    ```
 
-## License
+9. Jalankan Vite untuk mengompilasi asset:
+    ```bash
+    npm run dev
+    ```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Penggunaan
+
+Setelah menginstal dan menjalankan aplikasi, Anda dapat mengaksesnya melalui browser di alamat `http://localhost:8000`. Ikuti instruksi pada layar untuk memasukkan data kriteria dan alternatif lahan.
+
