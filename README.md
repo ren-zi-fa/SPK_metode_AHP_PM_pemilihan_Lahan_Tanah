@@ -1,5 +1,7 @@
 # SPK_metode_AHP_PM_pemilihan_Lahan_Tanah
 
+![Logo Proyek](https://github.com/ren-zi-fa/SPK_metode_AHP_PM_pemilihan_Lahan_Tanah/blob/main/public/favicon.ico)
+
 Proyek ini adalah sistem pendukung keputusan (SPK) yang menggunakan metode Analytic Hierarchy Process (AHP) dan Profile Matching (PM) untuk pemilihan lahan tanah. Sistem ini dirancang untuk membantu dalam menentukan lahan tanah yang paling sesuai berdasarkan kriteria-kriteria yang sudah saya tentukan.
 
 ## Daftar Isi
@@ -9,14 +11,13 @@ Proyek ini adalah sistem pendukung keputusan (SPK) yang menggunakan metode Analy
 - [Instalasi](#instalasi)
 - [Penggunaan](#penggunaan)
 
-
 ## Fitur
 
 - Implementasi metode AHP untuk menentukan bobot kriteria.
 - Implementasi metode Profile Matching untuk evaluasi alternatif lahan.
 - Antarmuka pengguna yang sederhana dan mudah digunakan.
-- Telah menggunakan fitur login oAuth dengan menggunakan google
-- Login dengan menggunakan multi role
+- Telah menggunakan fitur login oAuth dengan menggunakan Google.
+- Login dengan menggunakan multi role.
 
 ## Persyaratan
 
@@ -80,3 +81,10 @@ Berikut adalah langkah-langkah untuk menginstal dan menjalankan proyek ini secar
 
 Setelah menginstal dan menjalankan aplikasi, Anda dapat mengaksesnya melalui browser di alamat `http://localhost:8000`. Ikuti instruksi pada layar untuk memasukkan data kriteria dan alternatif lahan.
 
+## Gambar Proyek
+![Screenshot Aplikasi](https://github.com/ren-zi-fa/SPK_metode_AHP_PM_pemilihan_Lahan_Tanah/blob/main/Screenshot_22-5-2024_132517_laravel-pkl-ahp-pm.nzy.jpeg)
+![Screenshot Aplikasi](https://github.com/ren-zi-fa/SPK_metode_AHP_PM_pemilihan_Lahan_Tanah/blob/main/Screenshot_22-5-2024_132549_laravel-pkl-ahp-pm.nzy.jpeg)
+![Screenshot Aplikasi](https://github.com/ren-zi-fa/SPK_metode_AHP_PM_pemilihan_Lahan_Tanah/blob/main/Screenshot_22-5-2024_132714_laravel-pkl-ahp-pm.nzy.jpeg)
+![Screenshot Aplikasi](https://github.com/ren-zi-fa/SPK_metode_AHP_PM_pemilihan_Lahan_Tanah/blob/main/Screenshot_22-5-2024_132743_laravel-pkl-ahp-pm.nzy.jpeg)
+![Screenshot Aplikasi](https://github.com/ren-zi-fa/SPK_metode_AHP_PM_pemilihan_Lahan_Tanah/blob/main/Screenshot_22-5-2024_132820_laravel-pkl-ahp-pm.nzy.jpeg)
+![Screenshot Aplikasi](https://github.com/ren-zi-fa/SPK_metode_AHP_PM_pemilihan_Lahan_Tanah/blob/main/Screenshot_22-5-2024_133012_laravel-pkl-ahp-pm.nzy.jpeg)
