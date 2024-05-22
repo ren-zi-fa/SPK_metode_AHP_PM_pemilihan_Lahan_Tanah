@@ -44,7 +44,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-Route::prefix('admin')->middleware(['auth', 'Role_ori:Admin'])->group(function () {
+Route::prefix('admin')->middleware(['auth', 'role_ori:Admin'])->group(function () {
     Route::resource('/users', UserController::class);
     Route::resource('/products', ProductController::class);
     Route::resource('/presetpreferences', PresetPreferenceController::class);
@@ -62,8 +62,8 @@ Route::prefix('admin')->middleware(['auth', 'Role_ori:Admin'])->group(function (
 // rekomendasi 
 Route::resource('account/myfavorites', FavoriteController::class, [
     'only' => ['index', 'store', 'show', 'destroy']
-])->middleware(['auth', 'Role:User|Admin']);
-Route::prefix('tanah')->middleware(['auth', 'Role:User|Admin'])->group(function () {
+])->middleware(['auth', 'role_ori:User|Admin']);
+Route::prefix('tanah')->middleware(['auth', 'role_ori:User|Admin'])->group(function () {
 
     Route::resource('/search', SearchController::class, [
         'only' => ['index', 'store', 'show', 'destroy']
@@ -81,7 +81,7 @@ Route::prefix('tanah')->middleware(['auth', 'Role:User|Admin'])->group(function 
     Route::get('/rekomendasi/preset/{presetpreference}', [RekomendasiController::class, 'presetDetail'])->name('rekomendasi.preset.show');
 });
 
-Route::prefix('user/bobot')->middleware(['auth', 'Role:User|Admin'])->group(function () {
+Route::prefix('user/bobot')->middleware(['auth', 'role_ori:User|Admin'])->group(function () {
     // pembobotan ahp
     Route::get('/ahp', [UserMetodePembobotanController::class, 'ahp_index'])->name('user.bobot.ahp.index');
     Route::get('/ahp/create', [UserMetodePembobotanController::class, 'ahp_create'])->name('user.bobot.ahp.create');

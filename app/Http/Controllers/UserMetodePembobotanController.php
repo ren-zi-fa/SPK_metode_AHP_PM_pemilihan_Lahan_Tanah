@@ -609,10 +609,14 @@ class UserMetodePembobotanController extends Controller
         return redirect()->back()
             ->with('success', 'Bobot AHP yang digunakan untuk perhitungan rekomendasi berhasil diganti');
     }
+
+    // pembobotan langsung
     public function langsung_index()
     {
-        $this_user_id = Auth::id(); // return this_user->id
-        $bobot_langsung = BobotLangsung::where('id_user', $this_user_id)->first();
+        $this_user_id = Auth::id(); // return this_user->id 
+       
+   $bobot_langsung = BobotLangsung::where('id_user', $this_user_id)->first();
+
         // $data = 1;
         return view('user_bobot.langsung.index', compact('bobot_langsung'));
     }
