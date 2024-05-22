@@ -8,7 +8,6 @@ Proyek ini adalah sistem pendukung keputusan (SPK) yang menggunakan metode Analy
 - [Persyaratan](#persyaratan)
 - [Instalasi](#instalasi)
 - [Penggunaan](#penggunaan)
-- [Lisensi](#lisensi)
 
 
 ## Fitur
@@ -23,7 +22,7 @@ Proyek ini adalah sistem pendukung keputusan (SPK) yang menggunakan metode Analy
 
 Sebelum menginstal dan menjalankan proyek ini, pastikan Anda memiliki:
 
-- PHP >= 8.0
+- PHP >= 8.1
 - Composer
 - Database (MySQL)
 - Node.js dan NPM
