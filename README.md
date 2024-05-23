@@ -88,3 +88,5 @@ Setelah menginstal dan menjalankan aplikasi, Anda dapat mengaksesnya melalui bro
 ![Screenshot Aplikasi](https://github.com/ren-zi-fa/SPK_metode_AHP_PM_pemilihan_Lahan_Tanah/blob/main/Screenshot_22-5-2024_132743_laravel-pkl-ahp-pm.nzy.jpeg)
 ![Screenshot Aplikasi](https://github.com/ren-zi-fa/SPK_metode_AHP_PM_pemilihan_Lahan_Tanah/blob/main/Screenshot_22-5-2024_132820_laravel-pkl-ahp-pm.nzy.jpeg)
 ![Screenshot Aplikasi](https://github.com/ren-zi-fa/SPK_metode_AHP_PM_pemilihan_Lahan_Tanah/blob/main/Screenshot_22-5-2024_133012_laravel-pkl-ahp-pm.nzy.jpeg)
+
+https://github.com/ren-zi-fa/SPK_metode_AHP_PM_pemilihan_Lahan_Tanah/blob/main/LICENSE
